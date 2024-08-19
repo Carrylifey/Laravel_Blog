@@ -40,7 +40,7 @@
         <!-- Gender -->
         <div class="mt-4">
             <x-input-label for="gender" :value="__('Gender')" />
-            <select id="gender" name="gender" class="block mt-1 w-full">
+            <select id="gender" name="gender" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                 <option value="">Select Gender</option>
                 <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                 <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
@@ -52,7 +52,7 @@
         <!-- About -->
         <div class="mt-4">
             <x-input-label for="about" :value="__('About')" />
-            <textarea id="about" name="about" class="block mt-1 w-full">{{ old('about') }}</textarea>
+            <textarea id="about" name="about" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('about') }}</textarea>
             <x-input-error :messages="$errors->get('about')" class="mt-2" />
         </div>
 

@@ -20,38 +20,10 @@
     </style>
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Your Blog</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    @if (Route::has('login'))
-                        @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Log in</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                </li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <main class="container mt-5">
-        <!-- Your content goes here -->
-    </main>
+    @include('profile.partials.login')
+
+
 
     <footer class="text-center py-6">
         <p class="text-sm text-gray-500 dark:text-white/70">&copy; {{ date('Y') }} Your Blog. All rights reserved.</p>

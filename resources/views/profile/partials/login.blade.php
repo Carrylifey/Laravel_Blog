@@ -24,9 +24,9 @@ border-bottom-right-radius: .3rem;
     
 </style>
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="h-100 gradient-form" style="">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center ">
       <div class="col-xl-10">
         <div class="card rounded-3 text-black">
           <div class="row g-0">
@@ -36,10 +36,10 @@ border-bottom-right-radius: .3rem;
                 <div class="text-center">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                  <h4 class="mt-1 mb-5 pb-1">Welcome to Lotus blog</h4>
                 </div>
 
-                <form>
+                <!-- <form method="POST" action="{{ route('login') }}">
                   <p>Please login to your account</p>
 
                   <div data-mdb-input-init class="form-outline mb-4">
@@ -64,7 +64,45 @@ border-bottom-right-radius: .3rem;
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Create new</button>
                   </div>
 
-                </form>
+                </form> -->
+<form method="POST" action="{{ route('login') }}">
+    @csrf
+    <p>Please login to your account</p>
+
+    <!-- Email Address -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="email" id="email" class="form-control" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email address" />
+        <label class="form-label" for="email">Email</label>
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
+
+    <!-- Password -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="password" id="password" class="form-control" name="password" required autocomplete="current-password" placeholder="Password" />
+        <label class="form-label" for="password">Password</label>
+        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    </div>
+
+    <!-- Remember Me -->
+    <div class="form-check mb-4">
+        <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
+        <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
+    </div>
+
+    <div class="text-center pt-1 mb-5 pb-1">
+        <x-primary-button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">
+            {{ __('Log in') }}
+        </x-primary-button>
+        @if (Route::has('password.request'))
+            <a class="text-muted" href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
+        @endif
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center pb-4">
+        <p class="mb-0 me-2">Don't have an account?</p>
+        <a href="{{ route('register') }}" class="btn btn-outline-danger">Register Now</a>
+    </div>
+</form>
 
               </div>
             </div>
