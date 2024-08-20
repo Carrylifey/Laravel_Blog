@@ -12,24 +12,45 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <style>
+            /* Custom styles for the floating button */
+            .floating-button {
+                position: fixed;
+                bottom: 16px;
+                right: 16px;
+                background: linear-gradient(135deg, #f59e0b, #f97316); /* Yellow to red gradient */
+                color: white;
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                font-size: 24px;
+                text-align: center;
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+
+            <!-- Floating Add Button -->
+            @if(Route::currentRouteName() === 'home')
+
+            <div class="floating-button text-black" onclick="window.location.href='{{ route('blogs.create') }}'">
+                +
+            </div>
+            @endif
         </div>
+        
     </body>
 </html>
