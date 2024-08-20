@@ -14,7 +14,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Styles -->
-
+    <style>
+        /* Tailwind CSS styles */
+        /* Your existing tailwind CSS here */
+    </style>
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
