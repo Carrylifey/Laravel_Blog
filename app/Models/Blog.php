@@ -19,6 +19,7 @@ class Blog extends Model
         'content',
         'image',
         'category',
+        'user_id'
     ];
 
     /**
@@ -30,4 +31,10 @@ class Blog extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class); // Define the relationship
+    }
 }

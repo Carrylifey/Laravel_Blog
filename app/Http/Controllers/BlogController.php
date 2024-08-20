@@ -30,6 +30,7 @@ public function store(Request $request)
         'content' => $request->content,
         'image' => $imagePath,
         'category' => $request->category,
+        'user_id' => auth()->id(),
     ]);
 
     // return redirect()->route('blogs.index');
