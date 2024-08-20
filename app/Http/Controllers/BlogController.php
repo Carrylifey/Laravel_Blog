@@ -33,7 +33,7 @@ public function store(Request $request)
     ]);
 
     // return redirect()->route('blogs.index');
-    return redirect()->route('home')->with('success', 'Blog created successfully!');
+    return redirect()->route('home');
 }
 
 }

@@ -1,8 +1,10 @@
 <x-app-layout>
+
+<!-- form to create blog -->
 <div class="max-w-2xl mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
     <h1 class="text-xl font-bold mb-4">Create a New Blog Post</h1>
 
-    <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
+    <form id="createBlogForm" action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -31,5 +33,41 @@
         </div>
     </form>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#createBlogForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    // Show success message using Toastr
+                    toastr.success('Blog post created successfully!');
+                    //reset the form
+                    $('#createBlogForm')[0].reset();
+                    // Redirect to home after 1 second
+                    setTimeout(function() {
+                        window.location.href = '/home';
+                    }, 1200); // 1.2-second delay before redirecting
+                    
+                },
+                error: function (xhr) {
+                    // Show error message using Toastr
+                    toastr.error('An error occurred: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 
 </x-app-layout>
