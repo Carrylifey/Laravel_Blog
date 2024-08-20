@@ -36,5 +36,10 @@ public function store(Request $request)
     // return redirect()->route('blogs.index');
     return redirect()->route('home');
 }
+public function index()
+{
+    $blogs = Blog::all();
+    return view('dashboard', compact('blogs'));
+}
 
 }
