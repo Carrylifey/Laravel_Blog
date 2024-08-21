@@ -42,4 +42,24 @@ public function index()
     return view('dashboard', compact('blogs'));
 }
 
+public function destroy($id)
+{
+    // Find the blog by its ID
+    $blog = Blog::findOrFail($id);
+
+    // Check if the authenticated user is the author of the blog
+    if ($blog->user_id !== auth()->id()) {
+        // If not, return a JSON response indicating an unauthorized access
+        return response()->json(['message' => 'Unauthorized access.'], 403);
+    }
+
+    // Delete the blog
+    $blog->delete();
+
+    // Return a JSON response indicating successful deletion
+    return response()->json(['message' => 'Blog deleted successfully.']);
+}
+
+
+
 }

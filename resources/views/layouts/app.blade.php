@@ -45,7 +45,6 @@
             <main>
                 {{ $slot }}
             </main>
-
             <!-- Floating Add Button -->
             @if(auth()->check() && Route::currentRouteName() === 'home')
     <div class="floating-button text-black" onclick="window.location.href='{{ route('blogs.create')}}'">
