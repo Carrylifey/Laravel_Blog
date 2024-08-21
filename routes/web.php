@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/createblog', [BlogController::class, 'create'])->name('blogs.create');
 Route::post('/createblog', [BlogController::class, 'store'])->name('blogs.store');
 Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+
 });
 
 

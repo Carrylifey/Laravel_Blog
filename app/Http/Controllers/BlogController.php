@@ -42,6 +42,13 @@ public function index()
     return view('dashboard', compact('blogs'));
 }
 
+public function show($id)
+{
+    $blog = Blog::findOrFail($id);
+
+    return view('blogs.show', compact('blog'));
+}
+
 public function destroy($id)
 {
     // Find the blog by its ID

@@ -22,7 +22,7 @@
                 position: fixed;
                 bottom: 16px;
                 right: 16px;
-                background: linear-gradient(135deg, #f59e0b, #f97316); /* Yellow to red gradient */
+                background: linear-gradient(560deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 45%, rgba(252,176,69,1) 100%);
                 color: white;
                 border-radius: 50%;
                 width: 56px;
@@ -35,16 +35,15 @@
                 font-size: 24px;
                 text-align: center;
             }
+            
         </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            @yield('content')
+
             <!-- Floating Add Button -->
             @if(auth()->check() && Route::currentRouteName() === 'home')
     <div class="floating-button text-black" onclick="window.location.href='{{ route('blogs.create')}}'">
