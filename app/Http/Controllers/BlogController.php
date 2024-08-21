@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,10 +38,32 @@ public function store(Request $request)
     // return redirect()->route('blogs.index');
     return redirect()->route('home');
 }
-public function index()
+public function index(Request $request)
 {
-    $blogs = Blog::all();
-    return view('dashboard', compact('blogs'));
+    $query = Blog::with('user')->latest();
+
+    // Apply filters based on query parameters
+    if ($request->filled('title')) {
+        $query->where('title', 'like', '%' . $request->input('title') . '%');
+    }
+
+    if ($request->filled('author')) {
+        $query->where('user_id', $request->input('author'));
+    }
+
+    if ($request->filled('created_date')) {
+        $query->whereDate('created_at', $request->input('created_date'));
+    }
+
+    // Get the number of items per page
+    $perPage = $request->input('per_page', 10); // Default to 10 if not provided
+
+    $blogs = $query->paginate($perPage);
+
+    // Fetch authors for the dropdown
+    $authors = User::select('id', 'name')->get();
+
+    return view('dashboard', compact('blogs', 'authors'));
 }
 
 public function show($id)

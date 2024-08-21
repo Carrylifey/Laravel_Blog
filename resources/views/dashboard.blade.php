@@ -3,6 +3,31 @@
 @section('content')
     <div class="container mx-auto p-4"> 
 
+    <div class="mb-4 flex flex-col md:flex-row md:space-x-4">
+    <!-- Search by title -->
+    <div class="mb-2 md:mb-0 w-full md:w-1/3">
+        <input type="text" id="title-search" placeholder="Search by title" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm w-full" value="{{ request('title') }}">
+    </div>
+
+    <!-- Filter by author -->
+    <div class="mb-2 md:mb-0 w-full md:w-1/3">
+        <select id="author-filter" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm w-full">
+            <option value="">Select author</option>
+            @foreach($authors as $author)
+                <option value="{{ $author->id }}" {{ request('author') == $author->id ? 'selected' : '' }}>
+                    {{ $author->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <!-- Filter by created date -->
+    <div class="w-full md:w-1/3">
+        <input type="date" id="date-filter" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm w-full" value="{{ request('created_date') }}">
+    </div>
+</div>
+
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($blogs as $blog)
                 <div id="blog-card-{{ $blog->id }}" class="relative flex flex-col overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-md" style="height: 450px; width: 100%;">
@@ -117,4 +142,26 @@
         });
     });
     </script>
+    <script>
+document.getElementById('title-search').addEventListener('input', function() {
+    let query = this.value;
+    let url = new URL(window.location.href);
+    url.searchParams.set('title', query);
+    window.location.href = url.toString();
+});
+
+document.getElementById('author-filter').addEventListener('change', function() {
+    let query = this.value;
+    let url = new URL(window.location.href);
+    url.searchParams.set('author', query);
+    window.location.href = url.toString();
+});
+
+document.getElementById('date-filter').addEventListener('change', function() {
+    let query = this.value;
+    let url = new URL(window.location.href);
+    url.searchParams.set('created_date', query);
+    window.location.href = url.toString();
+});
+</script>
 @endsection
