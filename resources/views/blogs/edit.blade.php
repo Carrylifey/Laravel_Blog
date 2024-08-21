@@ -37,4 +37,35 @@
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#editBlogForm').on('submit', function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Show success message using Toastr or other methods
+                toastr.success('Blog post updated successfully!');
+
+                setTimeout(function() {
+                        window.location.href = '/home';
+                    }, 1000); // 1.2-second delay before redirecting
+            },
+            error: function (xhr) {
+                // Show error message using Toastr or other methods
+                toastr.error('An error occurred: ' + xhr.responseText);
+            }
+        });
+    });
+});
+</script>
 @endsection
