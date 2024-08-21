@@ -24,7 +24,7 @@ border-bottom-right-radius: .3rem;
     
 </style>
 
-<section class="h-100 gradient-form" style="">
+<section class="gradient-form" style="">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center ">
       <div class="col-xl-10">
@@ -36,7 +36,7 @@ border-bottom-right-radius: .3rem;
                 <div class="text-center">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Welcome to Lotus blog</h4>
+                  <h4 class="mt-1 mb-5 pb-1">Welcome to Blog</h4>
                 </div>
 
 <form method="POST" action="{{ route('login') }}">
@@ -72,10 +72,13 @@ border-bottom-right-radius: .3rem;
         @endif
     </div>
 
-    <div class="d-flex align-items-center justify-content-center pb-4">
+    <div class="d-flex align-items-center justify-content-center pb-2">
         <p class="mb-0 me-2">Don't have an account?</p>
-        <a href="{{ route('register') }}" class="btn btn-outline-danger">Register Now</a>
     </div>
+    <div class="d-flex align-items-center justify-content-center">
+    <a href="{{ route('register') }}" class="btn btn-outline-danger">Register Now</a>
+    </div>
+  
 </form>
 
               </div>
