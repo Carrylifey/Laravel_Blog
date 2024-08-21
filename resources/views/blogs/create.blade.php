@@ -60,7 +60,7 @@
                     // Redirect to home after 1 second
                     setTimeout(function() {
                         window.location.href = '/home';
-                    }, 1200); // 1.2-second delay before redirecting
+                    }, 1000); // 1.2-second delay before redirecting
                     
                 },
                 error: function (xhr) {

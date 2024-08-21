@@ -35,9 +35,11 @@
                         </div>
                         <!-- Action icons -->
                         <div class="flex space-x-4">
-                            <a  class="text-blue-500 hover:text-blue-700 cursor-pointer" title="Edit Blog">
+                        @if(auth()->id() === $blog->user_id)
+                            <a href="{{ route('blogs.edit', $blog->id) }}" class="text-blue-500 hover:text-blue-700 cursor-pointer" title="Edit Blog">
                                 <i class="fas fa-edit fa-lg"></i>
                             </a>
+                        @endif
                             <a href="{{ route('blogs.show', $blog->id) }}" class="text-green-500 hover:text-green-700 cursor-pointer" title="View Blog">
                                 <i class="fas fa-eye fa-lg"></i>
                             </a>
